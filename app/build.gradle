@@ -1,0 +1,280 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    useLibrary 'org.apache.http.legacy'
+
+    compileSdkVersion 33
+
+    defaultConfig {
+        resConfigs 'ar', 'hi-rIN', 'pt-rBR', 'zh', 'tr-rTR', 'ur-rPK', 'de', 'en', 'fr'
+
+
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+
+        applicationId "com.infusiblecoder.allinonevideodownloader"
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 51
+        versionName "2.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        ndk.abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+
+        android.ndkVersion '24.0.8215888'
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
+
+//        resValue "string", "FACEBOOK_APP_ID", "kjhhkk"
+
+
+        //TODO Enter Your Purchase Code Here. To Get Purchase Code Open Downloads Sections and Download the lLicense
+        buildConfigField "String", "PURCHASE_CODE", '"00dd8750-6ced-4a19-b1d2-8487bbdd2091"'
+
+        dexOptions {
+            javaMaxHeapSize "4g"
+            incremental true
+        }
+
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+
+//    signingConfigs {
+//        config {
+//            keyAlias 'key0'
+//            keyPassword '123456'
+//            storeFile file('keystorevideoapp(alias=key0__pass=123456).jks')
+//            storePassword '123456'
+//        }
+//    }
+
+//    signingConfigs {
+//        config {
+//            enableV3Signing = true
+//            enableV4Signing = true
+//        }
+//    }
+
+
+    buildTypes {
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [crashlytics: "true"]
+
+        }
+
+        debug {
+            manifestPlaceholders = [crashlytics: "false"]
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
+
+        }
+
+//        debug {
+//            debuggable true
+//            minifyEnabled true
+//            shrinkResources true
+//            signingConfig signingConfigs.config
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+    }
+    packagingOptions {
+        resources {
+            excludes += ['mozilla/public-suffix-list.txt', 'META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0', 'META-INF/*.kotlin_module']
+        }
+    }
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = 11
+    }
+    lint {
+        disable 'ResourceType'
+    }
+
+//TODO Un comment this if you want to genarate 64bit APK File
+
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+//            universalApk true
+//        }
+//    }
+
+
+    dependencies {
+        //default libraries
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+        implementation 'androidx.cardview:cardview:1.0.0'
+        implementation 'androidx.multidex:multidex:2.0.1'
+        testImplementation 'junit:junit:4.13.2'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+        //custom circle imageview
+        implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+        //Network data fetcher
+        implementation 'org.jsoup:jsoup:1.13.1'
+
+        //image loading library
+        implementation 'com.github.bumptech.glide:glide:4.12.0'
+        implementation 'com.github.bumptech.glide:annotations:4.12.0'
+        implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+        annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+        kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+        //navigation
+        implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+
+
+        //All ads network libraries
+        configurations {
+            all {
+                exclude group: 'com.google.android.gms', module: 'play-services-ads'
+            }
+        }
+        implementation 'com.google.android.gms:play-services-ads-lite:21.1.0'
+        implementation 'com.google.ads.mediation:facebook:6.11.0.0'
+        implementation 'androidx.annotation:annotation:1.4.0'
+
+        //app open ads
+        configurations {
+            all {
+                exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+            }
+        }
+        implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+        implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+        implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+
+        //noinspection LifecycleAnnotationProcessorWithJava8
+        kapt "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+
+        // For Java
+        implementation 'androidx.work:work-runtime:2.7.1'
+
+        // For Kotlin
+        implementation 'androidx.work:work-runtime-ktx:2.7.1'
+
+        //custom toast library
+        implementation 'com.github.GrenderG:Toasty:1.5.0'
+
+        implementation 'org.apache.commons:commons-lang3:3.10'
+        implementation 'commons-io:commons-io:2.6'
+
+        //live video wallpaper
+        implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+        //Ads consent
+        //implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
+
+        //rating dialog
+        implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
+
+        //Network call library
+        implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
+        //video download url fetcher
+        implementation 'com.github.KhunHtetzNaing:xGetter:3.0'
+
+        //rest api retrofit
+        implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+        implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+        implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+        implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+        implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.3'
+        implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+        //Rounded ImageView library
+        implementation 'com.makeramen:roundedimageview:2.3.0'
+
+        //in-app billing library
+        implementation "com.android.billingclient:billing-ktx:5.0.0"
+
+        //push notification onesignal
+        implementation 'com.onesignal:OneSignal:4.8.2'
+
+        //firebase analytics and crash
+        implementation platform('com.google.firebase:firebase-bom:30.3.1')
+        implementation 'com.google.firebase:firebase-crashlytics'
+        implementation 'com.google.firebase:firebase-analytics'
+        implementation 'com.google.firebase:firebase-perf'
+        implementation 'com.google.firebase:firebase-config'
+
+        //push notification firebase
+        implementation 'com.google.firebase:firebase-messaging:23.0.7'
+
+        //video view
+        implementation 'com.linsea:universalvideoview:1.1.0@aar'
+
+        //A tool to bypass the Cloudflare DDOS page.
+//        implementation 'com.zhkrb.cloudflare-scrape-android:scrape-webview:0.0.4'
+//        implementation 'com.github.mozilla:rhino:Rhino1_7_11_Release'
+//        implementation 'com.eclipsesource.j2v8:j2v8:4.5.0@aar'
+
+        //ratingdialog
+        implementation 'com.suddenh4x.ratingdialog:awesome-app-rating:2.4.0'
+
+        //PiracyChecker
+        implementation 'com.github.javiersantos:PiracyChecker:1.2.8'
+
+        //sliderview
+        implementation 'com.github.smarteist:autoimageslider:1.4.0'
+
+        //custom search view
+        implementation 'br.com.mauker.materialsearchview:materialsearchview:1.3.0-rc02'
+
+        //Biometric
+        implementation 'androidx.biometric:biometric:1.1.0'
+
+        //photoview
+        implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.play:core:1.10.3'
+}

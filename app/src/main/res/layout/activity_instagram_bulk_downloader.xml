@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.InstagramBulkDownloaderSearch">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="8dp">
+
+        <TextView
+            android:id="@+id/txt_search_click"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            app:drawableStartCompat="@drawable/ic_baseline_search_24"
+            android:hint="@string/search_hint" />
+
+        <br.com.mauker.materialsearchview.MaterialSearchView
+            android:id="@+id/searchinstaprofile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/MaterialSearchViewStyle"
+            app:queryHint="@string/search_a_username" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/as_of_the_new_api_update_you_can_use_the_bilk_downloader_only_if_your_account_is_logged_in"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

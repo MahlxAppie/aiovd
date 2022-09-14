@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>videoapp_AdmobNativeID</key>
+        <value>ca-app-pub-1732712936363257/7283553794</value>
+    </entry>
+    <entry>
+        <key>videoapp_AdmobRewardID</key>
+        <value>ca-app-pub-1732712936363257/8377143612</value>
+    </entry>
+    <entry>
+        <key>videoapp_AdmobAppopenads</key>
+        <value>ca-app-pub-1732712936363257/6353615506</value>
+    </entry>
+    <entry>
+        <key>videoapp_AdmobInterstitial</key>
+        <value>ca-app-pub-1732712936363257/5749064557</value>
+    </entry>
+    <entry>
+        <key>videoapp_AdmobBanner</key>
+        <value>ca-app-pub-1732712936363257/2546517842</value>
+    </entry>
+    <entry>
+        <key>videoapp_AdmobAppId</key>
+        <value>ca-app-pub-1732712936363257~9857746246</value>
+    </entry>
+    <entry>
+        <key>showAdsOrNot</key>
+        <value>true</value>
+    </entry>
+
+</defaultsMap>

@@ -1,0 +1,43 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.6.21'
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://android-sdk.is.com/'
+        }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.13'
+
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.14.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://android-sdk.is.com/'
+        }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

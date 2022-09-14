@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item0"
+        android:title="@string/gallery_fragment_statussaver"
+        android:icon="@drawable/ic_gallery_color_24dp"/>
+
+    <item
+        android:id="@+id/item1"
+        android:title="@string/StatusSaver_gallery"
+        android:icon="@drawable/statuspic_svg"/>
+
+    <item
+        android:id="@+id/item2"
+        android:title="@string/instaimage"
+        android:icon="@drawable/ic_image"/>
+
+    <item
+        android:id="@+id/item3"
+        android:title="@string/audios"
+        android:icon="@drawable/ic_music_note_24dp"/>
+
+
+</menu>

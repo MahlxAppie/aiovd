@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".activities.MainActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/banner_container"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+            <me.ibrahimsn.lib.SmoothBottomBar
+                android:id="@+id/bottomNavBar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:backgroundColor="@color/colorPrimary"
+                app:indicatorRadius="10dp"
+                app:menu="@menu/botton_nav" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/subscription_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="8dp"
+        android:text="@string/removeads"
+        android:textColor="@color/white"
+        android:theme="@style/MyMaterialTheme"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_crown_icon"
+        app:iconTint="@color/yello"
+        />
+
+
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:sliderAutoCycleEnabled="true"
+        app:sliderIndicatorEnabled="true"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorRadius="1dp"
+        app:sliderScrollTimeInSec="5"
+        app:sliderStartAutoCycle="true" />
+</RelativeLayout>
